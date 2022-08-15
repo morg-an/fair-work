@@ -7,7 +7,7 @@ const ObjectID = require('mongoose').Types.ObjectId;
 const morgan = require('morgan');
 const { truncate } = require("fs");
 
-const AppError = require('./appError');
+const AppError = require('./utils/appError');
 const Definition = require('./models/definitions');
 const User = require('./models/users');
 const { errorMonitor } = require("stream");
