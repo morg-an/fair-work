@@ -40,9 +40,14 @@ app.get('/about', (req, res) => {
     res.render('about')
 })
 
-app.get('/definitions', async (req, res) => {
-    const definitions = await Definition.find({})
-    res.render('definitions', { definitions })
+app.get('/definitions', async (req, res, next) => {
+    try {
+        const definitions = await Definition.find({})
+        res.render('definitions', { definitions })
+    } catch (e) {
+        next(e);
+    }
+
 })
 
 app.get('/definitions/:id', async (req, res, next) => {
