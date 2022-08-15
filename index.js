@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
+const ObjectID = require('mongoose').Types.ObjectId;
 const morgan = require('morgan');
 const { truncate } = require("fs");
 
@@ -44,10 +45,15 @@ app.get('/definitions', async (req, res) => {
     res.render('definitions', { definitions })
 })
 
-app.get('/definitions/:id', async (req, res) => {
+app.get('/definitions/:id', async (req, res, next) => {
     const { id } = req.params;
+    if (!ObjectID.isValid(id)) {
+        return next(new AppError(400, "Invalid ID Format"))
+    }
     const found = await Definition.findById(id);
-    console.log(found)
+    if (!found) {
+        return next(new AppError(404, "Definition Not Found"))
+    }
     res.render('term', { found })
 })
 
