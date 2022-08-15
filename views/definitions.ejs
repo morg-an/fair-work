@@ -1,0 +1,11 @@
+<% layout('/layouts/boilerplate') %>
+    <h1>Definitions</h1>
+    <ul>
+        <% for (let definition of definitions){ %>
+            <li>
+                <a href='/definitions/<%= definition._id%>'>
+                    <%=definition.term %>
+                </a>
+            </li>
+            <% } %>
+    </ul>

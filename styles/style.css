@@ -1,0 +1,67 @@
+*{
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+/* Body */
+main{
+  margin-inline: 10%;
+  margin-block: 5%;
+}
+
+p{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+h1{
+  margin-bottom: .5em;
+}
+h2{
+  margin-bottom: .5em;
+}
+
+/* Navigation Bar Styling */
+nav {
+  position: sticky;  
+  padding: auto;
+  padding-inline: 5%;
+  padding-block: 2%;
+  background-color: #B3DDF2;
+  color:white;
+}
+
+nav .header-right a {
+  text-decoration: none;
+  color: #FF0000;
+  font-weight: 500;
+  font-size: 1.2em;
+  margin-inline: 5%;
+}
+
+nav .header-left a {
+  text-decoration: none;
+  color: #1A2540;
+  font-weight: 600;
+  font-size: xx-large;
+}
+.header-left {
+  display: inline-block;
+  width: 69%;
+  
+}
+.header-right {
+  display:inline-block;
+  width: 30%;
+  
+}
+
+/* Footer */
+footer{
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-block: 2%;
+  background-color: white;
+}
