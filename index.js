@@ -57,15 +57,10 @@ app.get('/definitions/:id', async (req, res, next) => {
     res.render('term', { found })
 })
 
-// Error Handling Test Function that definitely doesn't work.
-app.get('/error', (req, res) => {
-    definitely.doesntWork();
-})
-
 // Middleware to run if prior route wasn't followed
 app.use((req, res, next) => {
-    res.status(404).render('pagenotfound');
-    next();
+    const err = new AppError(404, "Page Not Found")
+    next(err);
 })
 
 app.use((err, req, res, next) => {
