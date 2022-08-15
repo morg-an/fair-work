@@ -51,15 +51,19 @@ app.get('/definitions', async (req, res, next) => {
 })
 
 app.get('/definitions/:id', async (req, res, next) => {
-    const { id } = req.params;
-    if (!ObjectID.isValid(id)) {
-        return next(new AppError(400, "Invalid ID Format"))
+    try {
+        const { id } = req.params;
+        if (!ObjectID.isValid(id)) {
+            return next(new AppError(400, "Invalid ID Format"))
+        }
+        const found = await Definition.findById(id);
+        if (!found) {
+            return next(new AppError(404, "Definition Not Found"))
+        }
+        res.render('term', { found })
+    } catch (e) {
+        next(e);
     }
-    const found = await Definition.findById(id);
-    if (!found) {
-        return next(new AppError(404, "Definition Not Found"))
-    }
-    res.render('term', { found })
 })
 
 // Middleware to run if prior route wasn't followed
