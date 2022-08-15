@@ -44,8 +44,8 @@ app.get('/definitions', async (req, res, next) => {
     try {
         const definitions = await Definition.find({})
         res.render('definitions', { definitions })
-    } catch (e) {
-        next(e);
+    } catch (err) {
+        next(err);
     }
 
 })
@@ -61,8 +61,8 @@ app.get('/definitions/:id', async (req, res, next) => {
             return next(new AppError(404, "Definition Not Found"))
         }
         res.render('term', { found })
-    } catch (e) {
-        next(e);
+    } catch (err) {
+        next(err);
     }
 })
 
@@ -73,8 +73,8 @@ app.use((req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-    console.log('***********ERROR**************');
-    res.render('pagenotfound');
+    if (!err.message) err.message = 'Something Went Wrong';
+    res.render('pagenotfound', { err });
     next(err);
 })
 
